@@ -1,0 +1,28 @@
+<!-- Created by 11hopem (11 Hopem Software Ltd. Şti.) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <linearGradient id="jabGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284C7" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#22D3EE" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  <!-- Background Circle -->
+  <rect width="200" height="200" rx="44" fill="url(#jabGrad)" />
+  <!-- Briefcase Body -->
+  <rect x="45" y="75" width="110" height="75" rx="14" fill="#1E293B" stroke="url(#accentGrad)" stroke-width="4" />
+  <!-- Briefcase Handle -->
+  <path d="M75 75 V60 C75 52 83 46 92 46 H108 C117 46 125 52 125 60 V75" fill="none" stroke="url(#accentGrad)" stroke-width="4" stroke-linecap="round" />
+  <!-- Briefcase Latch Line -->
+  <line x1="45" y1="102" x2="155" y2="102" stroke="#334155" stroke-width="3" />
+  <rect x="90" y="96" width="20" height="14" rx="4" fill="url(#accentGrad)" />
+  <!-- Dynamic Lightning / Fast Apply Arrow -->
+  <path d="M104 112 L88 135 H102 L98 154 L118 128 H104 Z" fill="#FBBF24" filter="url(#glow)" />
+</svg>
