@@ -6,6 +6,7 @@ import json
 import os
 from datetime import datetime
 from typing import List, Dict, Optional, Any
+from .backup import create_autonomous_backup
 
 class ApplicationTracker:
     """
@@ -14,8 +15,9 @@ class ApplicationTracker:
 
     VALID_STATUSES = ["SAVED", "APPLIED", "INTERVIEW", "OFFER", "REJECTED"]
 
-    def __init__(self, storage_path: Optional[str] = None):
+    def __init__(self, storage_path: Optional[str] = None, backup_dir: Optional[str] = None):
         self.storage_path = storage_path
+        self.backup_dir = backup_dir
         self.applications: List[Dict[str, Any]] = []
         if self.storage_path and os.path.exists(self.storage_path):
             self.load()
@@ -58,6 +60,10 @@ class ApplicationTracker:
             os.makedirs(os.path.dirname(os.path.abspath(self.storage_path)), exist_ok=True)
             with open(self.storage_path, "w", encoding="utf-8") as f:
                 json.dump(self.applications, f, indent=2, ensure_ascii=False)
+        try:
+            create_autonomous_backup(self.applications, self.backup_dir)
+        except Exception:
+            pass
 
     def load(self):
         if self.storage_path and os.path.exists(self.storage_path):

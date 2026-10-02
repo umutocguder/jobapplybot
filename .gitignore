@@ -7,5 +7,10 @@ __pycache__/
 .env.local
 *.log
 logs/
-data/*.json
 .DS_Store
+
+# Autonomous Backups (Rule 17)
+data/backups/jobapply_backup_*.json
+!data/backups/jobapply_latest_backup.json
+!data/backups/jobapply_checksums.json
+
