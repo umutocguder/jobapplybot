@@ -1,6 +1,6 @@
 # JobApplyBot 💼⚡
 
-> **Created by 11hopem (11 Hopem Software Ltd. Şti.)**  
+> **Created by 11Hopem**  
 > *Otonom CV Eşleme, ATS Anahtar Kelime Analizi ve İş Başvuru Takip Motoru.*
 
 ![JobApplyBot Logo](assets/logo.svg)
