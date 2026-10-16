@@ -1,5 +1,45 @@
 [
   {
+    "timestamp": "2026-10-15T17:19:12.915708",
+    "applications_count": 1,
+    "sha256": "495750b118b529a5ef89206b3538f026d6bee83367a14caa7f93d8f83ede631e",
+    "file_size": 428,
+    "backup_file": "jobapply_backup_2026-10-15T17-19-12-915708.json",
+    "latest_backup_file": "jobapply_latest_backup.json"
+  },
+  {
+    "timestamp": "2026-10-15T17:19:12.915155",
+    "applications_count": 1,
+    "sha256": "0159d3e174296ef59128ce91bb16f7d07d853351ff8bec7d0e8ddd55640aaf78",
+    "file_size": 397,
+    "backup_file": "jobapply_backup_2026-10-15T17-19-12-915155.json",
+    "latest_backup_file": "jobapply_latest_backup.json"
+  },
+  {
+    "timestamp": "2026-10-15T17:19:12.914026",
+    "applications_count": 1,
+    "sha256": "10c5a7881c424059a51b5930b20f66f2d470dd65b34ed398d27dc2091023b6a5",
+    "file_size": 390,
+    "backup_file": "jobapply_backup_2026-10-15T17-19-12-914026.json",
+    "latest_backup_file": "jobapply_latest_backup.json"
+  },
+  {
+    "timestamp": "2026-10-15T17:19:12.912894",
+    "applications_count": 1,
+    "sha256": "bdf2d6486b26ce08b0febc1b68f687a450d6755215cc7fcdf168682acc0c74aa",
+    "file_size": 393,
+    "backup_file": "jobapply_backup_2026-10-15T17-19-12-912894.json",
+    "latest_backup_file": "jobapply_latest_backup.json"
+  },
+  {
+    "timestamp": "2026-10-15T17:19:12.910937",
+    "applications_count": 1,
+    "sha256": "76ad4b9f8cd7f6a758bc79a1937542d6e6844125db5ce67a293db578a0ad64ad",
+    "file_size": 397,
+    "backup_file": "jobapply_backup_2026-10-15T17-19-12-910937.json",
+    "latest_backup_file": "jobapply_latest_backup.json"
+  },
+  {
     "timestamp": "2026-10-14T10:14:07.035242",
     "applications_count": 1,
     "sha256": "cab236de123d25809e5666552bdb76c514b2b9e2e7925e7dcdf2e0fb33f21670",
@@ -197,14 +237,6 @@
     "sha256": "d304640556796ec60b043d17a7298f5537a831ded6d4762ce8849d7f0312b6c6",
     "file_size": 393,
     "backup_file": "jobapply_backup_2026-10-03T00-54-33-596349.json",
-    "latest_backup_file": "jobapply_latest_backup.json"
-  },
-  {
-    "timestamp": "2026-10-03T00:54:33.595728",
-    "applications_count": 1,
-    "sha256": "e8f76dfaf974c8167713f6342fb8d94aebbce558e436c241f65a4bfd29acab92",
-    "file_size": 397,
-    "backup_file": "jobapply_backup_2026-10-03T00-54-33-595728.json",
     "latest_backup_file": "jobapply_latest_backup.json"
   }
 ]
