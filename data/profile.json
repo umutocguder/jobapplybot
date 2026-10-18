@@ -1,0 +1,158 @@
+{
+  "full_name": "Umut Öçgüder",
+  "headline": "Senior iOS & Mobile Developer | Full-Stack Engineer",
+  "email": "umutocgdr@gmail.com",
+  "phone": "+90 507 490 26 05",
+  "location": "Ankara, Türkiye (Remote / Worldwide)",
+  "summary": "Senior Mobile Developer with 4+ years of professional engineering experience delivering top-tier iOS (Swift, SwiftUI, UIKit, Combine) and Full-Stack systems. Shipped enterprise applications reaching millions of active users, including İşCep (banking), HomeWhiz (IoT, MQTT protocol) and DOA (nationwide government fintech & KYC). Experienced in creating robust web platforms, automated bots, and AI solutions with Next.js and Python.",
+  "resume_url": "https://github.com/umutocguder/Resume/raw/main/Click%20For%20Resume.pdf",
+  "github_url": "https://github.com/umutocguder",
+  "linkedin_url": "https://www.linkedin.com/in/umutocguder",
+  "skills": {
+    "mobile": [
+      "Swift",
+      "SwiftUI",
+      "UIKit",
+      "Combine",
+      "Objective-C",
+      "CocoaPods",
+      "SPM",
+      "CoreData",
+      "Combine",
+      "Jetpack Compose",
+      "Kotlin",
+      "React Native",
+      "Expo"
+    ],
+    "web_backend": [
+      "TypeScript",
+      "JavaScript",
+      "React",
+      "Next.js",
+      "Python",
+      "Node.js",
+      "Supabase",
+      "PostgreSQL",
+      "Firebase",
+      "RESTful API",
+      "GraphQL",
+      "WebSockets"
+    ],
+    "architecture_tools": [
+      "MVVM",
+      "Clean Architecture",
+      "VIPER",
+      "Modular Design",
+      "CI/CD",
+      "GitHub Actions",
+      "Docker",
+      "Git",
+      "MQTT",
+      "NFC",
+      "KYC",
+      "Agile",
+      "Scrum"
+    ]
+  },
+  "experiences": [
+    {
+      "company": "Intetra",
+      "role": "iOS Developer & Technical Partner",
+      "period": "2026 - Present",
+      "summary": "Engineering intelligent transportation systems and real-time mobile platforms.",
+      "highlights": [
+        "Architected scalable mobile infrastructure for smart transportation and field operations.",
+        "Streamlined background data synchronization and telemetry pipelines."
+      ]
+    },
+    {
+      "company": "DIAS Technology",
+      "role": "iOS Developer",
+      "period": "2024 - 2025",
+      "summary": "Core engineer on DOA, Turkey's largest nationwide public recycling and fintech initiative.",
+      "highlights": [
+        "Delivered KYC verification, NFC hardware integrations, and complex Compositional Layouts.",
+        "Integrated secure transaction and reward payout modules for millions of end users."
+      ]
+    },
+    {
+      "company": "Arçelik via OBSS",
+      "role": "iOS Developer",
+      "period": "2023 - 2024",
+      "summary": "Core engineer on HomeWhiz, an enterprise IoT connectivity platform.",
+      "highlights": [
+        "Built low-latency smart device communication using the MQTT protocol.",
+        "Led team migration to Agile methodologies and elevated Swift code quality."
+      ]
+    },
+    {
+      "company": "Softtech (İşbank Ecosystem)",
+      "role": "iOS Developer",
+      "period": "2021 - 2023",
+      "summary": "Developed mobile banking, factoring, and financial investment applications.",
+      "highlights": [
+        "Engineered core modules for İşCep (2M+ user reviews, 4.6 star rating).",
+        "Built localized banking apps for İşbank Iraq, Georgia, London, and Kosovo branches.",
+        "Integrated QR check scanning, NFC onboarding, and video banking protocols."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "İşCep & Digital Banking",
+      "description": "High-throughput mobile banking application serving millions of daily active users.",
+      "technologies": [
+        "Swift",
+        "UIKit",
+        "Security",
+        "Fintech",
+        "NFC",
+        "REST API"
+      ]
+    },
+    {
+      "name": "HomeWhiz IoT Platform",
+      "description": "Smart home appliance ecosystem with real-time hardware telemetry and control.",
+      "technologies": [
+        "Swift",
+        "MQTT",
+        "IoT",
+        "Combine",
+        "Bluetooth",
+        "Networking"
+      ]
+    },
+    {
+      "name": "Misbetyy Boutique & Studio Platform",
+      "description": "Full-stack boutique e-commerce showcase, brand studio, and social media scheduler.",
+      "technologies": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Supabase",
+        "TailwindCSS"
+      ]
+    },
+    {
+      "name": "Sigorta Takip & WhatsApp CRM",
+      "description": "Insurance policy expiration tracker with automated client communication and WhatsApp CRM.",
+      "technologies": [
+        "Next.js",
+        "TypeScript",
+        "PWA",
+        "Supabase",
+        "Automation"
+      ]
+    },
+    {
+      "name": "Zootech Eleman Takip",
+      "description": "B2B enterprise field sales management and GPS tracking mobile app for veterinary medicine.",
+      "technologies": [
+        "SwiftUI",
+        "Supabase",
+        "CoreLocation",
+        "Background Tasks"
+      ]
+    }
+  ]
+}

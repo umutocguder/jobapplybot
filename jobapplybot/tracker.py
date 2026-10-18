@@ -4,6 +4,7 @@
 
 import json
 import os
+import uuid
 from datetime import datetime
 from typing import List, Dict, Optional, Any
 from .backup import create_autonomous_backup
@@ -23,7 +24,7 @@ class ApplicationTracker:
             self.load()
 
     def add_application(self, company: str, position: str, match_score: float = 0.0, url: str = "") -> Dict[str, Any]:
-        app_id = f"APP-{int(datetime.now().timestamp() * 1000)}"
+        app_id = f"APP-{int(datetime.now().timestamp() * 1000)}-{uuid.uuid4().hex[:6]}"
         app_data = {
             "id": app_id,
             "company": company,

@@ -1,17 +1,17 @@
 {
   "version": "1.0.0",
   "app": "JobApplyBot",
-  "timestamp": "2026-10-14T10:14:07.035242",
+  "timestamp": "2026-10-18T23:03:04.317220",
   "applications_count": 1,
   "applications": [
     {
-      "id": "APP-1791962047034",
+      "id": "APP-1792353784316-81c6d1",
       "company": "Beta Ltd",
       "position": "DevOps Specialist",
       "match_score": 92.0,
       "url": "",
       "status": "INTERVIEW",
-      "applied_at": "2026-10-14T10:14:07.034758",
+      "applied_at": "2026-10-18T23:03:04.316517",
       "notes": "HR called, scheduled round 1."
     }
   ]
