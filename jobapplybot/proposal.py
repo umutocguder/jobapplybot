@@ -8,7 +8,8 @@ from .matcher import ResumeMatcher
 
 class ProposalGenerator:
     """
-    Generates high-converting freelance proposals and tailored corporate cover letters.
+    Generates high-converting freelance proposals and tailored corporate cover letters
+    grounded in Umut Öçgüder's verified track record, 11Hopem.com, and enterprise deployments.
     """
 
     def __init__(self, profile: Optional[CandidateProfile] = None):
@@ -36,11 +37,15 @@ class ProposalGenerator:
         for p in relevant_projects:
             name = p.get("name", "")
             desc = p.get("description", "")
+            url = p.get("url", "")
+            metrics = p.get("metrics", "")
             tech = ", ".join(p.get("technologies", []))
+            link_str = f" ({url})" if url else ""
+            metrics_str = f" [Metrics: {metrics}]" if metrics else ""
             if language == "en":
-                project_mentions.append(f"- **{name}**: {desc} (Built with: {tech})")
+                project_mentions.append(f"- **{name}**{link_str}: {desc}{metrics_str} (Tech: {tech})")
             else:
-                project_mentions.append(f"- **{name}**: {desc} (Teknolojiler: {tech})")
+                project_mentions.append(f"- **{name}**{link_str}: {desc}{metrics_str} (Teknolojiler: {tech})")
 
         projects_block = "\n".join(project_mentions) if project_mentions else ""
 
@@ -62,6 +67,7 @@ class ProposalGenerator:
                 f"I am available to start immediately and can jump on a brief 10-minute call to align on details.\n\n"
                 f"Best regards,\n"
                 f"{self.profile.full_name}\n"
+                f"Founder, {self.profile.company} ({self.profile.website_url})\n"
                 f"Portfolio: {self.profile.github_url} | {self.profile.linkedin_url}"
             )
         else:
@@ -82,6 +88,7 @@ class ProposalGenerator:
                 f"Detayları konuşmak ve hemen başlamak için dilediğiniz zaman iletişime geçebilirsiniz.\n\n"
                 f"İyi çalışmalar,\n"
                 f"{self.profile.full_name}\n"
+                f"Kurucu, {self.profile.company} ({self.profile.website_url})\n"
                 f"Portfolyo: {self.profile.github_url} | {self.profile.linkedin_url}"
             )
 
@@ -126,6 +133,7 @@ class ProposalGenerator:
                 f"{company} achieve its engineering goals.\n\n"
                 f"Sincerely,\n"
                 f"{self.profile.full_name}\n"
+                f"Founder, {self.profile.company} ({self.profile.website_url})\n"
                 f"Email: {self.profile.email} | Phone: {self.profile.phone}\n"
                 f"Resume: {self.profile.resume_url} | GitHub: {self.profile.github_url}"
             )
@@ -145,6 +153,7 @@ class ProposalGenerator:
                 f"Deneyimlerimi ve {company} hedeflerine nasıl katkı sağlayabileceğimi detaylandırmak üzere sizinle görüşmeyi çok isterim.\n\n"
                 f"Saygılarımla,\n"
                 f"{self.profile.full_name}\n"
+                f"Kurucu, {self.profile.company} ({self.profile.website_url})\n"
                 f"E-posta: {self.profile.email} | Telefon: {self.profile.phone}\n"
                 f"CV: {self.profile.resume_url} | GitHub: {self.profile.github_url}"
             )

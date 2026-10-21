@@ -37,7 +37,15 @@ class TestCandidateProfile(unittest.TestCase):
         profile = CandidateProfile()
         relevant = profile.find_relevant_projects(["Swift", "MQTT", "IoT"], limit=2)
         self.assertGreaterEqual(len(relevant), 1)
-        self.assertEqual(relevant[0]["name"], "HomeWhiz IoT Platform")
+        self.assertIn("HomeWhiz", relevant[0]["name"])
+
+    def test_rich_profile_attributes(self):
+        profile = CandidateProfile()
+        self.assertEqual(profile.company, "11Hopem Software Ltd. Şti.")
+        self.assertEqual(profile.website_url, "https://11hopem.com")
+        self.assertGreater(len(profile.education), 0)
+        self.assertEqual(profile.education[0]["school"], "Selçuk University (Selçuk Üniversitesi)")
+        self.assertGreater(len(profile.all_skills_list()), 50)
 
     def test_save_and_load_profile(self):
         custom_data = {

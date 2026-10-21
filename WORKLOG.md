@@ -95,3 +95,33 @@ Kullanıcının "projemizi büyüt" talimatı ve "işe girmek, freelance iş alm
 #### Mevcut Durum ve Doğrulama
 - `python3 -m unittest discover -s tests`: **36 Test çalıştırıldı — %100 Başarı (0 Hata).**
 - Tüm CLI komutları (`profile`, `scan`, `propose`, `apply`, `status`) yerel ortamda test edildi ve doğrulandı.
+
+---
+
+### [2026-10-21 15:25] - CV, 11Hopem.com ve Kurumsal Canlı Referanslar Entegrasyonu
+
+#### Görev ve Amaç
+Kullanıcının talimatı doğrultusunda adayın resmi CV'si, kurucusu olduğu 11Hopem Software (`11hopem.com`), geçmiş kurumsal başarıları (Softtech / İşCep, Arçelik HomeWhiz, DIAS DOA, Intetra) ve canlıya alınan 11+ SaaS/web platformu derinlemesine taranarak botun bilgi haznesine ve aday profil motoruna işlendi.
+
+#### Teknik Kararlar ve Mimari Değişiklikler
+- **`jobapplybot/profile.py`**:
+  - `CandidateProfile`: Selçuk Üniversitesi Bilgisayar Mühendisliği (3.19 GPA), 11Hopem Software Ltd. Şti. kurucu geçmişi, 63 teknik yetenek (Swift, SwiftUI, UIKit, Kotlin, Next.js, Supabase, Python, MQTT, BLE, NFC, KYC, CI/CD) ile donatıldı.
+  - Canlı Referanslar ve Metrikler: İşCep (2M+ yorum, 4.6★), HomeWhiz (1M+ cihaz, <100ms MQTT), DOA (Ulusal ölçek, NFC/KYC), FitQueen Club (IoT Turnike), Misbetyy Butik, Osman Savaş Akademi, Sigorta Takip, Interview Master AI, Muselum AI, Custom Rugs, Zootech Eleman Takip eklendi.
+  - Bilmök konuşmacılığı ve Softtech girişimcilik programı eklendi.
+- **`jobapplybot/proposal.py`**:
+  - Teklif ve ön yazı imzalarına `11hopem.com` şirket ve portfolyo linkleri, ilgili projelerin canlı URL ve metrikleri dahil edildi.
+- **`jobapplybot/cli.py`**:
+  - `profile` komutu şirket, eğitim, 63 yetenek, kurumsal roller ve canlı platform bağlantılarını formatlı şekilde listeleyecek şekilde genişletildi.
+- **`tests/test_profile.py`**:
+  - Zengin profil nitelikleri (şirket, eğitim, 50+ yetenek, URL bağlantıları) için birim testleri eklendi.
+
+#### Etkilenen Dosyalar ve Bileşenler
+- [`profile.py`](file:///Users/umut/mycodespaces/jobapplybot/jobapplybot/profile.py)
+- [`proposal.py`](file:///Users/umut/mycodespaces/jobapplybot/jobapplybot/proposal.py)
+- [`cli.py`](file:///Users/umut/mycodespaces/jobapplybot/jobapplybot/cli.py)
+- [`data/profile.json`](file:///Users/umut/mycodespaces/jobapplybot/data/profile.json)
+- [`tests/test_profile.py`](file:///Users/umut/mycodespaces/jobapplybot/tests/test_profile.py)
+- [`WORKLOG.md`](file:///Users/umut/mycodespaces/jobapplybot/WORKLOG.md)
+
+#### Mevcut Durum ve Doğrulama
+- `python3 -m unittest discover -s tests`: **42 Test çalıştırıldı — %100 Başarı (0 Hata).**

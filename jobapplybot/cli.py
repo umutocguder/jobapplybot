@@ -116,13 +116,35 @@ def run_status(args: argparse.Namespace) -> int:
 
 def run_profile(args: argparse.Namespace) -> int:
     profile = CandidateProfile.load()
-    print(f"\n👤 Candidate Profile: {profile.full_name} ({profile.headline})")
+    print(f"\n👤 Candidate Profile: {profile.full_name}")
+    print(f"🎯 Headline: {profile.headline}")
+    print(f"🏢 Company: {profile.company} | 🌐 {profile.website_url}")
     print(f"📍 Location: {profile.location} | ✉️ {profile.email} | 📞 {profile.phone}")
+    print(f"🔗 Links: GitHub: {profile.github_url} | LinkedIn: {profile.linkedin_url}")
+    
+    if profile.education:
+        edu = profile.education[0]
+        print(f"🎓 Education: {edu.get('degree')} in {edu.get('field')} - {edu.get('school')} (GPA: {edu.get('gpa')})")
+
     print(f"\n🛠️ Technical Skills ({len(profile.all_skills_list())} total):")
     for category, skills in profile.skills.items():
-        print(f"  • {category.title()}: {', '.join(skills)}")
-    print(f"\n💼 Past Experiences: {len(profile.experiences)} roles recorded.")
-    print(f"🌟 Key Projects: {len(profile.projects)} showcase projects.")
+        cat_title = category.replace("_", " ").title()
+        print(f"  • {cat_title}: {', '.join(skills)}")
+
+    print(f"\n💼 Enterprise Work Experience ({len(profile.experiences)} roles):")
+    for exp in profile.experiences:
+        print(f"  • {exp.get('role')} @ {exp.get('company')} ({exp.get('period')})")
+        if exp.get('summary'):
+            print(f"    - {exp.get('summary')}")
+
+    print(f"\n🌟 Live Production Projects & Showcases ({len(profile.projects)} platforms):")
+    for proj in profile.projects:
+        url_info = f" -> {proj.get('url')}" if proj.get('url') else ""
+        metrics_info = f" ({proj.get('metrics')})" if proj.get('metrics') else ""
+        print(f"  • {proj.get('name')} [{proj.get('category')}]{url_info}")
+        if metrics_info:
+            print(f"    Metrics:{metrics_info}")
+
     return 0
 
 def build_parser() -> argparse.ArgumentParser:

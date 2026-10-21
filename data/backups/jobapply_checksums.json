@@ -1,5 +1,101 @@
 [
   {
+    "timestamp": "2026-10-21T15:26:10.591583",
+    "applications_count": 1,
+    "sha256": "b3432a25fb79bb595f06f81c43f71264d4936bb9d4933d494f5778922b1166d1",
+    "file_size": 435,
+    "backup_file": "jobapply_backup_2026-10-21T15-26-10-591583.json",
+    "latest_backup_file": "jobapply_latest_backup.json"
+  },
+  {
+    "timestamp": "2026-10-21T15:26:10.590887",
+    "applications_count": 1,
+    "sha256": "7369cf65515a4d71184f0ad5899742c6d4eaeb6b814abe8e4b0e62bdeedadf44",
+    "file_size": 404,
+    "backup_file": "jobapply_backup_2026-10-21T15-26-10-590887.json",
+    "latest_backup_file": "jobapply_latest_backup.json"
+  },
+  {
+    "timestamp": "2026-10-21T15:26:10.589776",
+    "applications_count": 1,
+    "sha256": "ee97f915d6440aa27a8dc401a0112d40f7da9e632cef9fbd871fcd9e9687759f",
+    "file_size": 397,
+    "backup_file": "jobapply_backup_2026-10-21T15-26-10-589776.json",
+    "latest_backup_file": "jobapply_latest_backup.json"
+  },
+  {
+    "timestamp": "2026-10-21T15:26:10.588559",
+    "applications_count": 1,
+    "sha256": "677c19b8e44cc2553fdc324f516e8010428df0845fac11d8840481760fff24bf",
+    "file_size": 400,
+    "backup_file": "jobapply_backup_2026-10-21T15-26-10-588559.json",
+    "latest_backup_file": "jobapply_latest_backup.json"
+  },
+  {
+    "timestamp": "2026-10-21T15:26:10.587253",
+    "applications_count": 1,
+    "sha256": "38b057fef579f6b746fe828fb104dcc27a88582aa23884b9d008e09acc8e3d28",
+    "file_size": 404,
+    "backup_file": "jobapply_backup_2026-10-21T15-26-10-587253.json",
+    "latest_backup_file": "jobapply_latest_backup.json"
+  },
+  {
+    "timestamp": "2026-10-21T15:26:09.134832",
+    "applications_count": 1,
+    "sha256": "dc9bd471245f376b773fd8b91b95185a4f1f94281f1e7e297bea713af3d86269",
+    "file_size": 420,
+    "backup_file": "jobapply_backup_2026-10-21T15-26-09-134832.json",
+    "latest_backup_file": "jobapply_latest_backup.json"
+  },
+  {
+    "timestamp": "2026-10-21T15:25:48.342228",
+    "applications_count": 1,
+    "sha256": "335269c92ef13077d4fada2e7d5bd824f92c201f01dcadab44dcb56d8cf02900",
+    "file_size": 435,
+    "backup_file": "jobapply_backup_2026-10-21T15-25-48-342228.json",
+    "latest_backup_file": "jobapply_latest_backup.json"
+  },
+  {
+    "timestamp": "2026-10-21T15:25:48.341548",
+    "applications_count": 1,
+    "sha256": "507811a0b24109f621bbf00ba0392cd930a3535eb07a0735ab8e83693c5374b7",
+    "file_size": 404,
+    "backup_file": "jobapply_backup_2026-10-21T15-25-48-341548.json",
+    "latest_backup_file": "jobapply_latest_backup.json"
+  },
+  {
+    "timestamp": "2026-10-21T15:25:48.340303",
+    "applications_count": 1,
+    "sha256": "9b9263fb1e39b187eb2f7b7e5c0ee81a2e9eb45f02bbff6a4cc8a0f741ec765f",
+    "file_size": 397,
+    "backup_file": "jobapply_backup_2026-10-21T15-25-48-340303.json",
+    "latest_backup_file": "jobapply_latest_backup.json"
+  },
+  {
+    "timestamp": "2026-10-21T15:25:48.339193",
+    "applications_count": 1,
+    "sha256": "309382e050a6adb552ede30ec3c094c2c4edc991a48a8a2c20d87581c1f7ade9",
+    "file_size": 400,
+    "backup_file": "jobapply_backup_2026-10-21T15-25-48-339193.json",
+    "latest_backup_file": "jobapply_latest_backup.json"
+  },
+  {
+    "timestamp": "2026-10-21T15:25:48.338043",
+    "applications_count": 1,
+    "sha256": "12da468007149f5b1a5c8e8395ca438324989975a07089bba25e3a31d118eb75",
+    "file_size": 404,
+    "backup_file": "jobapply_backup_2026-10-21T15-25-48-338043.json",
+    "latest_backup_file": "jobapply_latest_backup.json"
+  },
+  {
+    "timestamp": "2026-10-21T15:25:46.381213",
+    "applications_count": 1,
+    "sha256": "702dfbdf122ec6039c122bb8a38c528cfc675a0bc05d48956f4eda50336b0b9a",
+    "file_size": 420,
+    "backup_file": "jobapply_backup_2026-10-21T15-25-46-381213.json",
+    "latest_backup_file": "jobapply_latest_backup.json"
+  },
+  {
     "timestamp": "2026-10-19T05:06:16.458040",
     "applications_count": 1,
     "sha256": "f3f602ef46b59d97272d35c6ce7cbfb2c0165c34d4cc30e68defec51967d80b0",
@@ -141,102 +237,6 @@
     "sha256": "8a2161670928dc242d89278c1dafb7766fd52d234b81dba04c0b1256e63d0315",
     "file_size": 420,
     "backup_file": "jobapply_backup_2026-10-19T05-05-26-177147.json",
-    "latest_backup_file": "jobapply_latest_backup.json"
-  },
-  {
-    "timestamp": "2026-10-18T23:03:04.317220",
-    "applications_count": 1,
-    "sha256": "ee19a98330911960f305b9d52b5c5011467137422f02149eb2307db503d4709c",
-    "file_size": 435,
-    "backup_file": "jobapply_backup_2026-10-18T23-03-04-317220.json",
-    "latest_backup_file": "jobapply_latest_backup.json"
-  },
-  {
-    "timestamp": "2026-10-18T23:03:04.316636",
-    "applications_count": 1,
-    "sha256": "ac05e977e83868f0592d58750b10766364f9a6c5a37e94d83f3386d22fbcdfa8",
-    "file_size": 404,
-    "backup_file": "jobapply_backup_2026-10-18T23-03-04-316636.json",
-    "latest_backup_file": "jobapply_latest_backup.json"
-  },
-  {
-    "timestamp": "2026-10-18T23:03:04.315729",
-    "applications_count": 1,
-    "sha256": "380ea6c517e4b712abb49489bc4e32ba8cd112b4ca16302f9f48f724fba6183f",
-    "file_size": 397,
-    "backup_file": "jobapply_backup_2026-10-18T23-03-04-315729.json",
-    "latest_backup_file": "jobapply_latest_backup.json"
-  },
-  {
-    "timestamp": "2026-10-18T23:03:04.314931",
-    "applications_count": 1,
-    "sha256": "7b6dfc1f0448a7506f506ec5648f9e8b112dd3f5bfeb4e5fc38e76e218c2baca",
-    "file_size": 400,
-    "backup_file": "jobapply_backup_2026-10-18T23-03-04-314931.json",
-    "latest_backup_file": "jobapply_latest_backup.json"
-  },
-  {
-    "timestamp": "2026-10-18T23:03:04.314177",
-    "applications_count": 1,
-    "sha256": "01c32586a9c097361e7b7aae3b6c72dbda2bcd84ea4dfe0d417b7df2119b8e24",
-    "file_size": 404,
-    "backup_file": "jobapply_backup_2026-10-18T23-03-04-314177.json",
-    "latest_backup_file": "jobapply_latest_backup.json"
-  },
-  {
-    "timestamp": "2026-10-18T23:03:04.295887",
-    "applications_count": 1,
-    "sha256": "312a50d163b93fbe147c67a641e023f5701bd56993878c6a6bf5db15e129be50",
-    "file_size": 420,
-    "backup_file": "jobapply_backup_2026-10-18T23-03-04-295887.json",
-    "latest_backup_file": "jobapply_latest_backup.json"
-  },
-  {
-    "timestamp": "2026-10-18T23:02:26.488328",
-    "applications_count": 1,
-    "sha256": "0f425a461304f231d24657bbd17348163a0f7a14d16a839d13b5aea5d1ac4de2",
-    "file_size": 435,
-    "backup_file": "jobapply_backup_2026-10-18T23-02-26-488328.json",
-    "latest_backup_file": "jobapply_latest_backup.json"
-  },
-  {
-    "timestamp": "2026-10-18T23:02:26.487909",
-    "applications_count": 1,
-    "sha256": "4db6777591a9118902aaf4c94a52d3be689059fa36538c7a9adde9bcaae1ca84",
-    "file_size": 404,
-    "backup_file": "jobapply_backup_2026-10-18T23-02-26-487909.json",
-    "latest_backup_file": "jobapply_latest_backup.json"
-  },
-  {
-    "timestamp": "2026-10-18T23:02:26.487265",
-    "applications_count": 1,
-    "sha256": "a6c4da0aaee417e0cdec8912c6511c7b8bb5ec464dbd029fb27fa0c5d51a995e",
-    "file_size": 397,
-    "backup_file": "jobapply_backup_2026-10-18T23-02-26-487265.json",
-    "latest_backup_file": "jobapply_latest_backup.json"
-  },
-  {
-    "timestamp": "2026-10-18T23:02:26.486625",
-    "applications_count": 1,
-    "sha256": "cd7a327a382ce853e92f6b397e5314b171adc6c16b4fc89a250794f1e4bc59f0",
-    "file_size": 400,
-    "backup_file": "jobapply_backup_2026-10-18T23-02-26-486625.json",
-    "latest_backup_file": "jobapply_latest_backup.json"
-  },
-  {
-    "timestamp": "2026-10-18T23:02:26.485953",
-    "applications_count": 1,
-    "sha256": "04ce030edd634fd9768ebce4b3a859ac911b505c8f657e63d159a28b5a962d08",
-    "file_size": 404,
-    "backup_file": "jobapply_backup_2026-10-18T23-02-26-485953.json",
-    "latest_backup_file": "jobapply_latest_backup.json"
-  },
-  {
-    "timestamp": "2026-10-18T23:02:26.469880",
-    "applications_count": 1,
-    "sha256": "cb8d2a1e78785a2278942e6ab270756a9c9687f4a5b0c319170c689cfad3df34",
-    "file_size": 420,
-    "backup_file": "jobapply_backup_2026-10-18T23-02-26-469880.json",
     "latest_backup_file": "jobapply_latest_backup.json"
   }
 ]
