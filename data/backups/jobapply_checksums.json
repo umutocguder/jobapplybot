@@ -1,5 +1,53 @@
 [
   {
+    "timestamp": "2026-10-28T20:59:39.582487",
+    "applications_count": 1,
+    "sha256": "4486da0642f0a03c7149427269f43c41b0ab86c5cc6ba9149bbf4d79d5388d34",
+    "file_size": 435,
+    "backup_file": "jobapply_backup_2026-10-28T20-59-39-582487.json",
+    "latest_backup_file": "jobapply_latest_backup.json"
+  },
+  {
+    "timestamp": "2026-10-28T20:59:39.581994",
+    "applications_count": 1,
+    "sha256": "d72d91110931f5615829e9dc5bb0ff5e89decb96b241b10198718fe8b4f2661b",
+    "file_size": 404,
+    "backup_file": "jobapply_backup_2026-10-28T20-59-39-581994.json",
+    "latest_backup_file": "jobapply_latest_backup.json"
+  },
+  {
+    "timestamp": "2026-10-28T20:59:39.581288",
+    "applications_count": 1,
+    "sha256": "9e0f5972a4b5e0c37afb9911f63d9070bcd2f3c8823926e18963d58db227c6ba",
+    "file_size": 397,
+    "backup_file": "jobapply_backup_2026-10-28T20-59-39-581288.json",
+    "latest_backup_file": "jobapply_latest_backup.json"
+  },
+  {
+    "timestamp": "2026-10-28T20:59:39.580579",
+    "applications_count": 1,
+    "sha256": "e51e89c56672bc716ce1bfa11b9f6ca9c99aa4e7e7d4ff4289753b72ea506ef6",
+    "file_size": 400,
+    "backup_file": "jobapply_backup_2026-10-28T20-59-39-580579.json",
+    "latest_backup_file": "jobapply_latest_backup.json"
+  },
+  {
+    "timestamp": "2026-10-28T20:59:39.579795",
+    "applications_count": 1,
+    "sha256": "c0f6e21a1b8ea7167f52d4c49972930e5a621aea6df04b23c28df0d21a91b299",
+    "file_size": 404,
+    "backup_file": "jobapply_backup_2026-10-28T20-59-39-579795.json",
+    "latest_backup_file": "jobapply_latest_backup.json"
+  },
+  {
+    "timestamp": "2026-10-28T20:59:38.138687",
+    "applications_count": 1,
+    "sha256": "2732ef1e2ad8030f5adec02a69ba59ae1890f233f266ee940d12d13563a5224a",
+    "file_size": 420,
+    "backup_file": "jobapply_backup_2026-10-28T20-59-38-138687.json",
+    "latest_backup_file": "jobapply_latest_backup.json"
+  },
+  {
     "timestamp": "2026-10-21T15:26:10.591583",
     "applications_count": 1,
     "sha256": "b3432a25fb79bb595f06f81c43f71264d4936bb9d4933d494f5778922b1166d1",
@@ -189,54 +237,6 @@
     "sha256": "98782b76038fb57fab75b4115c89f09207345ceae3390adabfe0ad64263197b6",
     "file_size": 420,
     "backup_file": "jobapply_backup_2026-10-19T05-06-00-573070.json",
-    "latest_backup_file": "jobapply_latest_backup.json"
-  },
-  {
-    "timestamp": "2026-10-19T05:05:26.198305",
-    "applications_count": 1,
-    "sha256": "1cd049c135f1e8c9aac05efe0e08cc832622e04b8310f94dd3c7dbff62e78448",
-    "file_size": 435,
-    "backup_file": "jobapply_backup_2026-10-19T05-05-26-198305.json",
-    "latest_backup_file": "jobapply_latest_backup.json"
-  },
-  {
-    "timestamp": "2026-10-19T05:05:26.197838",
-    "applications_count": 1,
-    "sha256": "7587aae3055fa91461be61b792302dd54c0572877602cc2611e093ec0f4b17dc",
-    "file_size": 404,
-    "backup_file": "jobapply_backup_2026-10-19T05-05-26-197838.json",
-    "latest_backup_file": "jobapply_latest_backup.json"
-  },
-  {
-    "timestamp": "2026-10-19T05:05:26.197020",
-    "applications_count": 1,
-    "sha256": "8f0061ac83b58f6bc588c9909804d236c5c18889e95474b79f06e2f480c16e0e",
-    "file_size": 397,
-    "backup_file": "jobapply_backup_2026-10-19T05-05-26-197020.json",
-    "latest_backup_file": "jobapply_latest_backup.json"
-  },
-  {
-    "timestamp": "2026-10-19T05:05:26.196173",
-    "applications_count": 1,
-    "sha256": "5d68640590503674c3e10cb5bb2c70989c83c09e02d0ee42e54712c1152766ba",
-    "file_size": 400,
-    "backup_file": "jobapply_backup_2026-10-19T05-05-26-196173.json",
-    "latest_backup_file": "jobapply_latest_backup.json"
-  },
-  {
-    "timestamp": "2026-10-19T05:05:26.195448",
-    "applications_count": 1,
-    "sha256": "9d55fb22de7d62053c3a580386da3e867c5666181cfef5c080a391ba57bc17a0",
-    "file_size": 404,
-    "backup_file": "jobapply_backup_2026-10-19T05-05-26-195448.json",
-    "latest_backup_file": "jobapply_latest_backup.json"
-  },
-  {
-    "timestamp": "2026-10-19T05:05:26.177147",
-    "applications_count": 1,
-    "sha256": "8a2161670928dc242d89278c1dafb7766fd52d234b81dba04c0b1256e63d0315",
-    "file_size": 420,
-    "backup_file": "jobapply_backup_2026-10-19T05-05-26-177147.json",
     "latest_backup_file": "jobapply_latest_backup.json"
   }
 ]
