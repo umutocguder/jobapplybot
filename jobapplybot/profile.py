@@ -1,0 +1,421 @@
+# Created by 11Hopem
+# Copyright (c) 2026 11hopem. All rights reserved.
+# Licensed under 11Hopem Proprietary License.
+
+import os
+import json
+from typing import Dict, List, Any, Optional
+
+DEFAULT_PROFILE_PATH = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+    "data",
+    "profile.json"
+)
+
+class CandidateProfile:
+    """
+    Candidate profile and portfolio manager for ATS resume matching and proposals.
+    Grounded in Umut Öçgüder's verified track record, 11Hopem.com, and live production deployments.
+    """
+
+    def __init__(self, data: Optional[Dict[str, Any]] = None):
+        self.data: Dict[str, Any] = data or self.get_default_profile_data()
+
+    @property
+    def full_name(self) -> str:
+        return self.data.get("full_name", "")
+
+    @property
+    def headline(self) -> str:
+        return self.data.get("headline", "")
+
+    @property
+    def company(self) -> str:
+        return self.data.get("company", "11Hopem Software")
+
+    @property
+    def website_url(self) -> str:
+        return self.data.get("website_url", "https://11hopem.com")
+
+    @property
+    def email(self) -> str:
+        return self.data.get("email", "")
+
+    @property
+    def phone(self) -> str:
+        return self.data.get("phone", "")
+
+    @property
+    def location(self) -> str:
+        return self.data.get("location", "")
+
+    @property
+    def summary(self) -> str:
+        return self.data.get("summary", "")
+
+    @property
+    def resume_url(self) -> str:
+        return self.data.get("resume_url", "")
+
+    @property
+    def github_url(self) -> str:
+        return self.data.get("github_url", "")
+
+    @property
+    def linkedin_url(self) -> str:
+        return self.data.get("linkedin_url", "")
+
+    @property
+    def education(self) -> List[Dict[str, Any]]:
+        return self.data.get("education", [])
+
+    @property
+    def speaking_and_honors(self) -> List[Dict[str, Any]]:
+        return self.data.get("speaking_and_honors", [])
+
+    @property
+    def skills(self) -> Dict[str, List[str]]:
+        return self.data.get("skills", {})
+
+    @property
+    def experiences(self) -> List[Dict[str, Any]]:
+        return self.data.get("experiences", [])
+
+    @property
+    def projects(self) -> List[Dict[str, Any]]:
+        return self.data.get("projects", [])
+
+    def all_skills_list(self) -> List[str]:
+        all_skills: List[str] = []
+        for cat_skills in self.skills.values():
+            if isinstance(cat_skills, list):
+                all_skills.extend(cat_skills)
+        return sorted(list(set(all_skills)))
+
+    def to_resume_text(self) -> str:
+        """
+        Builds a dense textual resume representation for ATS keyword matching.
+        """
+        parts = [
+            f"{self.full_name} - {self.headline}",
+            f"Founder & CEO: {self.company} ({self.website_url})",
+            f"Location: {self.location} | Email: {self.email} | Phone: {self.phone}",
+            f"GitHub: {self.github_url} | LinkedIn: {self.linkedin_url} | CV: {self.resume_url}",
+            f"Executive Summary: {self.summary}",
+            "Comprehensive Technical Skills: " + ", ".join(self.all_skills_list())
+        ]
+
+        if self.education:
+            parts.append("Education:")
+            for edu in self.education:
+                school = edu.get("school", "")
+                degree = edu.get("degree", "")
+                field = edu.get("field", "")
+                gpa = edu.get("gpa", "")
+                notes = edu.get("notes", "")
+                parts.append(f"{degree} in {field} from {school} (GPA: {gpa}). {notes}")
+
+        parts.append("Professional Work Experience & Track Record:")
+        for exp in self.experiences:
+            company = exp.get("company", "")
+            role = exp.get("role", "")
+            period = exp.get("period", "")
+            location = exp.get("location", "")
+            summary = exp.get("summary", "")
+            highlights = " ".join(exp.get("highlights", []))
+            parts.append(f"{role} at {company} ({period}, {location}). {summary} Highlights: {highlights}")
+
+        parts.append("Live Production Portfolio & Key SaaS / Client Platforms:")
+        for proj in self.projects:
+            name = proj.get("name", "")
+            category = proj.get("category", "")
+            desc = proj.get("description", "")
+            tech = ", ".join(proj.get("technologies", []))
+            url = proj.get("url", "")
+            metrics = proj.get("metrics", "")
+            parts.append(f"Project: {name} [{category}]. URL: {url}. Metrics: {metrics}. Description: {desc}. Stack: {tech}")
+
+        if self.speaking_and_honors:
+            parts.append("Honors, Public Speaking & Community:")
+            for item in self.speaking_and_honors:
+                title = item.get("title", "")
+                detail = item.get("detail", "")
+                parts.append(f"{title}: {detail}")
+
+        return "\n\n".join(parts)
+
+    def find_relevant_projects(self, keywords: List[str], limit: int = 3) -> List[Dict[str, Any]]:
+        """
+        Finds candidate projects best matching a list of target keywords.
+        """
+        normalized_kw = {k.lower() for k in keywords}
+        scored_projects = []
+
+        for proj in self.projects:
+            score = 0
+            searchable = (
+                proj.get("name", "") + " " +
+                proj.get("category", "") + " " +
+                proj.get("description", "") + " " +
+                proj.get("metrics", "") + " " +
+                " ".join(proj.get("technologies", []))
+            ).lower()
+
+            for kw in normalized_kw:
+                if kw in searchable:
+                    score += 1
+
+            scored_projects.append((score, proj))
+
+        scored_projects.sort(key=lambda x: x[0], reverse=True)
+        return [p[1] for p in scored_projects[:limit]]
+
+    def save(self, filepath: Optional[str] = None):
+        target = filepath or DEFAULT_PROFILE_PATH
+        os.makedirs(os.path.dirname(os.path.abspath(target)), exist_ok=True)
+        with open(target, "w", encoding="utf-8") as f:
+            json.dump(self.data, f, indent=2, ensure_ascii=False)
+
+    @classmethod
+    def load(cls, filepath: Optional[str] = None) -> "CandidateProfile":
+        target = filepath or DEFAULT_PROFILE_PATH
+        if os.path.exists(target):
+            with open(target, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            return cls(data)
+        profile = cls()
+        profile.save(target)
+        return profile
+
+    @staticmethod
+    def get_default_profile_data() -> Dict[str, Any]:
+        return {
+            "full_name": "Umut Öçgüder",
+            "headline": "Senior iOS & Mobile Architect | Full-Stack Engineer | Founder @ 11Hopem Software",
+            "company": "11Hopem Software Ltd. Şti.",
+            "website_url": "https://11hopem.com",
+            "email": "umutocgdr@gmail.com",
+            "phone": "+90 507 490 26 05",
+            "location": "Ankara, Türkiye (Available Worldwide / Remote & Relocation)",
+            "summary": (
+                "Senior Mobile Architect and Full-Stack Software Engineer with 5+ years of engineering excellence. "
+                "Founder & CEO of 11Hopem Software (11hopem.com). Shipped mission-critical Swift applications across banking, "
+                "fintech, IoT, and nationwide public-sector systems reaching millions of users — including İşCep (2M+ reviews, 4.6★), "
+                "HomeWhiz (1M+ connected IoT hardware devices via MQTT), and DOA (T.C. Çevre Bakanlığı nationwide public recycling & KYC). "
+                "Expert in building production-grade Next.js, React, and Python platforms with zero-crash guarantee, bank-grade security, "
+                "and automated CI/CD pipelines. Selçuk University Computer Science graduate."
+            ),
+            "resume_url": "https://github.com/umutocguder/Resume/raw/main/Click%20For%20Resume.pdf",
+            "github_url": "https://github.com/umutocguder",
+            "linkedin_url": "https://www.linkedin.com/in/umutocguder",
+            "education": [
+                {
+                    "school": "Selçuk University (Selçuk Üniversitesi)",
+                    "degree": "Bachelor of Science (B.S.)",
+                    "field": "Computer Science / Computer Engineering",
+                    "startDate": "2017-09-01",
+                    "endDate": "2021-08-01",
+                    "gpa": 3.19,
+                    "notes": (
+                        "Graduated with 3.19 GPA. Completed an intensive 1-year iOS software development internship. "
+                        "Worked as a professional technical translator (English - Turkish). "
+                        "Active participant and awardee in national hackathons and developer bootcamps."
+                    )
+                }
+            ],
+            "skills": {
+                "mobile_native": [
+                    "Swift", "SwiftUI", "UIKit", "Combine", "Objective-C", "CoreData", "CoreLocation",
+                    "CoreNFC", "HealthKit", "AVFoundation", "StoreKit", "Compositional Layouts", "AutoLayout",
+                    "SPM", "CocoaPods", "Memory Management (ARC)", "Zero-Crash Architecture"
+                ],
+                "cross_platform_android": [
+                    "Kotlin", "Jetpack Compose", "Android SDK", "React Native", "Expo"
+                ],
+                "web_frontend": [
+                    "TypeScript", "JavaScript", "React 19", "Next.js 15 (App Router)", "TailwindCSS",
+                    "HTML5", "CSS3 / SCSS", "Responsive Design", "WebSockets"
+                ],
+                "backend_cloud_databases": [
+                    "Python", "Node.js", "Express", "Supabase (PostgreSQL, Auth, RLS, Edge Functions, Storage)",
+                    "Firebase (Auth, Firestore, Cloud Logging, Hosting)", "PostgreSQL", "SQLite", "RESTful APIs",
+                    "GraphQL", "Serverless Architecture"
+                ],
+                "iot_hardware_protocols": [
+                    "MQTT Protocol", "Bluetooth Low Energy (BLE)", "NFC Chip Integration", "QR / Barcode Scanners",
+                    "Relay & Turnstile Access Hardware", "Real-Time Telemetry"
+                ],
+                "fintech_biometrics_security": [
+                    "Biometric Face KYC", "e-ID NFC Chip Verification", "WebRTC Video KYC",
+                    "QR Check Scanning & Processing", "Banking Security Standards", "PII / KVKK Masking"
+                ],
+                "architecture_devops_quality": [
+                    "MVVM", "VIPER", "Clean Architecture", "Protocol-Oriented Programming (POP)",
+                    "Test-Driven Development (TDD)", "Docker", "GitHub Actions (CI/CD)", "Vercel Production Deployments",
+                    "Agile / Scrum", "Code Auditing & Refactoring"
+                ]
+            },
+            "experiences": [
+                {
+                    "company": "11Hopem Software",
+                    "role": "Founder & Software Architect",
+                    "period": "2024 - Present",
+                    "location": "Ankara, Türkiye / Remote",
+                    "summary": "Directing architecture, product engineering, and AI automation across high-throughput web and mobile platforms.",
+                    "highlights": [
+                        "Architected and deployed 15+ live SaaS and web platforms for enterprise and boutique clients.",
+                        "Engineered FitQueen Club IoT smart turnstile access control with real-time membership verification.",
+                        "Maintained 99.99% uptime across production platforms with strict zero-crash SLAs and automated CI/CD."
+                    ]
+                },
+                {
+                    "company": "Intetra Technology",
+                    "role": "Senior iOS Developer & Technical Partner",
+                    "period": "2026 - Present",
+                    "location": "Ankara, Türkiye",
+                    "summary": "Engineering Intelligent Transportation Systems (ITS) and mobile infrastructure for public infrastructure.",
+                    "highlights": [
+                        "Architected scalable mobile infrastructure for smart transportation and field operations (KGM AUS).",
+                        "Led technical analysis for Ankara Metropolitan Municipality (ABB DDKS IP-3) smart intersection systems."
+                    ]
+                },
+                {
+                    "company": "DIAS Technology",
+                    "role": "Senior iOS Engineer",
+                    "period": "2024 - 2025",
+                    "location": "Istanbul, Remote",
+                    "summary": "Core engineer on DOA (T.C. Çevre Bakanlığı / TÜÇA), Turkey's largest nationwide public deposit refund & fintech platform.",
+                    "highlights": [
+                        "Architected biometric face KYC verification, NFC smart card hardware integrations, and payout modules for millions of users.",
+                        "Delivered fluid 60fps UI using advanced UICollectionView Compositional Layouts and Combine pipelines.",
+                        "Performed technical code audits on national transport frameworks (UTTS, Fuel and Win, Rotta Frameworks)."
+                    ]
+                },
+                {
+                    "company": "Arçelik via OBSS",
+                    "role": "Senior iOS & IoT Engineer",
+                    "period": "2023 - 2024",
+                    "location": "Ankara, Remote",
+                    "summary": "Core engineer on HomeWhiz, an enterprise smart home IoT ecosystem managing millions of connected appliances.",
+                    "highlights": [
+                        "Delivered sub-100ms real-time appliance control using the MQTT protocol and Bluetooth Low Energy (BLE).",
+                        "Elevated code quality across high-complexity Swift tasks, established unit testing suites, and drove Agile transformation."
+                    ]
+                },
+                {
+                    "company": "Softtech (Türkiye İş Bankası Ecosystem)",
+                    "role": "Senior iOS Developer",
+                    "period": "2021 - 2023",
+                    "location": "Ankara, Remote",
+                    "summary": "Engineered mobile banking, factoring, investment, and healthtech platforms across the İşbank ecosystem.",
+                    "highlights": [
+                        "Developed core native modules for İşCep, serving millions of daily active users with 2M+ reviews and 4.6★ rating.",
+                        "Built localized native banking applications for international branches (UK London, Georgia, Iraq, Kosovo).",
+                        "Architected QR check scanning and inter-bank financial bidding for İş Faktoring and Fiba Faktoring.",
+                        "Integrated NFC e-ID reading and WebRTC video call customer acquisition (Video KYC) for İş Yatırım & Ünlü & Co.",
+                        "Engineered Triwi mobile health platform with Apple HealthKit and wearable sensor integrations.",
+                        "Conducted technical code audits for Nays, Lunafi, Bayındır Sağlık, Paşabahçe, ProEmtia, and İş Leasing."
+                    ]
+                }
+            ],
+            "projects": [
+                {
+                    "name": "İşCep & Digital Banking Ecosystem",
+                    "category": "Enterprise Mobile Banking",
+                    "url": "https://www.isbank.com.tr",
+                    "metrics": "2M+ App Store reviews, 4.6★ rating, millions of daily active users",
+                    "description": "High-security native iOS mobile banking with biometric authentication, financial transfers, and localized international branch support.",
+                    "technologies": ["Swift", "UIKit", "MVVM", "Fintech Security", "Biometrics", "REST API", "NFC"]
+                },
+                {
+                    "name": "HomeWhiz Smart Home IoT Ecosystem",
+                    "category": "IoT & Smart Appliances",
+                    "url": "https://www.homewhiz.com",
+                    "metrics": "1M+ connected home devices, <100ms response time",
+                    "description": "Real-time IoT smart device telemetry and firmware control for Arçelik smart kitchen and home appliances.",
+                    "technologies": ["Swift", "MQTT", "BLE", "IoT Telemetry", "Combine", "Networking"]
+                },
+                {
+                    "name": "DOA Ulusal Kamu & FinTek Platformu",
+                    "category": "Government & FinTech",
+                    "url": "https://www.csb.gov.tr",
+                    "metrics": "Nationwide scale for T.C. Çevre, Şehircilik ve İklim Değişikliği Bakanlığı / TÜÇA",
+                    "description": "National recycling and financial refund ecosystem with biometric face KYC, NFC card payments, and high-performance UI.",
+                    "technologies": ["SwiftUI", "NFC", "KYC Biometrics", "Fintech", "Compositional Layouts"]
+                },
+                {
+                    "name": "FitQueen Club & FitPass Akıllı Turnike",
+                    "category": "IoT Access Control & SaaS",
+                    "url": "https://fitqueen-club.vercel.app",
+                    "metrics": "Live production, automated QR/Barcode access control turnstile integration",
+                    "description": "End-to-end gym turnstile access control, real-time member check-in verification, and SaaS management console.",
+                    "technologies": ["TypeScript", "Next.js", "IoT Turnstile Hardware", "QR/Barcode", "Supabase", "TailwindCSS"]
+                },
+                {
+                    "name": "Misbetyy Butik & Marka Stüdyosu",
+                    "category": "E-Commerce & Studio",
+                    "url": "https://misbetyy-butik.vercel.app",
+                    "metrics": "Live production e-commerce vitrine and brand automation platform",
+                    "description": "Dynamic product catalog, Instagram social post scheduler, and instant customer checkout flow.",
+                    "technologies": ["Next.js 15", "React 19", "TypeScript", "Supabase", "TailwindCSS"]
+                },
+                {
+                    "name": "Osman Savaş Akademi",
+                    "category": "EdTech & Exam Simulator",
+                    "url": "https://osman-savas-akademi.vercel.app",
+                    "metrics": "Live interactive mock exam system with video solution streaming",
+                    "description": "Geography examination platform for KPSS/YKS with automated scoring, video solutions, and student progress tracking.",
+                    "technologies": ["Next.js", "TypeScript", "Video Streaming", "Exam Engine", "Supabase"]
+                },
+                {
+                    "name": "Sigorta Takip & WhatsApp CRM",
+                    "category": "FinTech CRM & Automation",
+                    "url": "https://sigorta-takip-app.vercel.app",
+                    "metrics": "Live policy expiration tracking and one-click WhatsApp client outreach",
+                    "description": "Insurance policy renewal tracker with automated WhatsApp reminder triggers and client quote generation.",
+                    "technologies": ["Next.js", "TypeScript", "WhatsApp API", "PWA", "Supabase"]
+                },
+                {
+                    "name": "Interview Master AI",
+                    "category": "AI / EdTech",
+                    "url": "https://interview-master-ai-umutocgdrs-projects.vercel.app",
+                    "metrics": "Live AI mock interview coaching platform",
+                    "description": "Interactive AI-powered technical and behavioral interview simulator providing instant feedback and grading.",
+                    "technologies": ["Next.js", "TypeScript", "AI / LLM Integration", "Speech Synthesis", "TailwindCSS"]
+                },
+                {
+                    "name": "Muselum AI Mind Mapping",
+                    "category": "AI Productivity",
+                    "url": "https://muselum.vercel.app",
+                    "metrics": "Live document AI mind-map generation platform",
+                    "description": "Extracts complex technical documents into interactive, dynamic node graphs and mind maps.",
+                    "technologies": ["Next.js", "React Flow", "TypeScript", "AI Document Parser"]
+                },
+                {
+                    "name": "Custom Rugs & Merch Studio",
+                    "category": "Print-on-Demand E-Commerce",
+                    "url": "https://custom-rugs.vercel.app",
+                    "metrics": "Live custom rugs, apparel, and merchandise ordering studio",
+                    "description": "Online customizer for print-on-demand rugs, mugs, and apparel with 3D preview and checkout.",
+                    "technologies": ["Next.js", "React Three Fiber", "TypeScript", "Stripe"]
+                },
+                {
+                    "name": "Zootech Eleman Takip",
+                    "category": "Enterprise Mobile & Field Ops",
+                    "url": "https://11hopem.com",
+                    "metrics": "Production field tracking mobile application for veterinary pharma sales",
+                    "description": "Native iOS field sales management, real-time GPS location tracking, and veterinary order dispatch.",
+                    "technologies": ["SwiftUI", "CoreLocation", "Supabase", "Background Tasks", "Push Notifications"]
+                }
+            ],
+            "speaking_and_honors": [
+                {
+                    "title": "Bilmök (National Computer Science Students Congress)",
+                    "detail": "Invited speaker representing Softtech on mobile engineering, fintech architecture, and technology entrepreneurship."
+                },
+                {
+                    "title": "Softtech Entrepreneurship & Innovation Program",
+                    "detail": "Selected for advanced corporate innovation, venture building, and high-velocity product acceleration."
+                }
+            ]
+        }

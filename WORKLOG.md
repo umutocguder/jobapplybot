@@ -54,3 +54,74 @@ Kullanıcının talimatı doğrultusunda `jobapplybot` projesinin zorunlu 5 dosy
 - **Sıradaki Adımlar**:
   - Değişikliklerin GitHub'a commit ve pushlanması.
 
+
+---
+
+### [2026-10-18 23:05] - JobApplyBot Genişletme: Aday Profili, İlan Radarı, Teklif Motoru ve CLI Komut Merkezi
+
+#### Görev ve Amaç
+Kullanıcının "projemizi büyüt" talimatı ve "işe girmek, freelance iş almak" temel hedefi doğrultusunda sistemin çekirdek motoru genişletildi; aday profil yöneticisi, uzaktan ilan radarı, ATS tabanlı freelance teklif ve kurumsal ön yazı üreteci, başvuru hunisi raporlama modülü ve tam donanımlı CLI komut merkezi geliştirildi.
+
+#### Teknik Kararlar ve Mimari Değişiklikler
+- **`jobapplybot/profile.py`**:
+  - `CandidateProfile`: Adayın (Umut Öçgüder) gerçek portfolyo ve iş deneyimini (İşCep, HomeWhiz, DOA, Misbetyy, Sigorta Takip) yöneten, ATS için optimize edilmiş metin üreten ve anahtar kelimelere göre ilgili projeleri filtreleyen modül.
+- **`jobapplybot/proposal.py`**:
+  - `ProposalGenerator`: İlan gereksinimlerine göre kopyala-yapıştır hissettirmeyen, adayın ilgili projelerini öne çıkaran Upwork/Bionluk freelance teklifleri ve kurumsal cover letter metinleri üreten modül (Türkçe ve İngilizce).
+- **`jobapplybot/radar.py`**:
+  - `JobRadar`: Python standart kütüphanesi (`urllib.request`, `xml.etree.ElementTree`, `json`) ile uzaktan iş ilanlarını çeken, filtreleyen ve `ResumeMatcher` ile adayın CV'sine göre skorlayıp en uygun fırsatları sıralayan radar.
+- **`jobapplybot/report.py`**:
+  - `ApplicationReporter`: Başvuru istatistikleri, mülakat dönüşüm oranları ve Markdown formatında huni raporu üreten analitik modül.
+- **`jobapplybot/cli.py` & `jobapplybot/__main__.py` & `scripts/jobhunter.py`**:
+  - Sıfır bağımlılıkla çalışan interaktif ve komut satırı destekli CLI (`scan`, `match`, `propose`, `apply`, `status`, `profile`).
+- **`jobapplybot/tracker.py`**:
+  - Başvuru kimliklerinde alt-milisaniye çakışmalarını önlemek için `uuid4` eki eklendi.
+
+#### Etkilenen Dosyalar ve Bileşenler
+- [`profile.py`](file:///Users/umut/mycodespaces/jobapplybot/jobapplybot/profile.py)
+- [`proposal.py`](file:///Users/umut/mycodespaces/jobapplybot/jobapplybot/proposal.py)
+- [`radar.py`](file:///Users/umut/mycodespaces/jobapplybot/jobapplybot/radar.py)
+- [`report.py`](file:///Users/umut/mycodespaces/jobapplybot/jobapplybot/report.py)
+- [`cli.py`](file:///Users/umut/mycodespaces/jobapplybot/jobapplybot/cli.py)
+- [`__main__.py`](file:///Users/umut/mycodespaces/jobapplybot/jobapplybot/__main__.py)
+- [`tracker.py`](file:///Users/umut/mycodespaces/jobapplybot/jobapplybot/tracker.py)
+- [`scripts/jobhunter.py`](file:///Users/umut/mycodespaces/jobapplybot/scripts/jobhunter.py)
+- [`README.md`](file:///Users/umut/mycodespaces/jobapplybot/README.md)
+- [`tests/test_profile.py`](file:///Users/umut/mycodespaces/jobapplybot/tests/test_profile.py)
+- [`tests/test_proposal.py`](file:///Users/umut/mycodespaces/jobapplybot/tests/test_proposal.py)
+- [`tests/test_radar.py`](file:///Users/umut/mycodespaces/jobapplybot/tests/test_radar.py)
+- [`tests/test_report.py`](file:///Users/umut/mycodespaces/jobapplybot/tests/test_report.py)
+- [`tests/test_cli.py`](file:///Users/umut/mycodespaces/jobapplybot/tests/test_cli.py)
+
+#### Mevcut Durum ve Doğrulama
+- `python3 -m unittest discover -s tests`: **36 Test çalıştırıldı — %100 Başarı (0 Hata).**
+- Tüm CLI komutları (`profile`, `scan`, `propose`, `apply`, `status`) yerel ortamda test edildi ve doğrulandı.
+
+---
+
+### [2026-10-21 15:25] - CV, 11Hopem.com ve Kurumsal Canlı Referanslar Entegrasyonu
+
+#### Görev ve Amaç
+Kullanıcının talimatı doğrultusunda adayın resmi CV'si, kurucusu olduğu 11Hopem Software (`11hopem.com`), geçmiş kurumsal başarıları (Softtech / İşCep, Arçelik HomeWhiz, DIAS DOA, Intetra) ve canlıya alınan 11+ SaaS/web platformu derinlemesine taranarak botun bilgi haznesine ve aday profil motoruna işlendi.
+
+#### Teknik Kararlar ve Mimari Değişiklikler
+- **`jobapplybot/profile.py`**:
+  - `CandidateProfile`: Selçuk Üniversitesi Bilgisayar Mühendisliği (3.19 GPA), 11Hopem Software Ltd. Şti. kurucu geçmişi, 63 teknik yetenek (Swift, SwiftUI, UIKit, Kotlin, Next.js, Supabase, Python, MQTT, BLE, NFC, KYC, CI/CD) ile donatıldı.
+  - Canlı Referanslar ve Metrikler: İşCep (2M+ yorum, 4.6★), HomeWhiz (1M+ cihaz, <100ms MQTT), DOA (Ulusal ölçek, NFC/KYC), FitQueen Club (IoT Turnike), Misbetyy Butik, Osman Savaş Akademi, Sigorta Takip, Interview Master AI, Muselum AI, Custom Rugs, Zootech Eleman Takip eklendi.
+  - Bilmök konuşmacılığı ve Softtech girişimcilik programı eklendi.
+- **`jobapplybot/proposal.py`**:
+  - Teklif ve ön yazı imzalarına `11hopem.com` şirket ve portfolyo linkleri, ilgili projelerin canlı URL ve metrikleri dahil edildi.
+- **`jobapplybot/cli.py`**:
+  - `profile` komutu şirket, eğitim, 63 yetenek, kurumsal roller ve canlı platform bağlantılarını formatlı şekilde listeleyecek şekilde genişletildi.
+- **`tests/test_profile.py`**:
+  - Zengin profil nitelikleri (şirket, eğitim, 50+ yetenek, URL bağlantıları) için birim testleri eklendi.
+
+#### Etkilenen Dosyalar ve Bileşenler
+- [`profile.py`](file:///Users/umut/mycodespaces/jobapplybot/jobapplybot/profile.py)
+- [`proposal.py`](file:///Users/umut/mycodespaces/jobapplybot/jobapplybot/proposal.py)
+- [`cli.py`](file:///Users/umut/mycodespaces/jobapplybot/jobapplybot/cli.py)
+- [`data/profile.json`](file:///Users/umut/mycodespaces/jobapplybot/data/profile.json)
+- [`tests/test_profile.py`](file:///Users/umut/mycodespaces/jobapplybot/tests/test_profile.py)
+- [`WORKLOG.md`](file:///Users/umut/mycodespaces/jobapplybot/WORKLOG.md)
+
+#### Mevcut Durum ve Doğrulama
+- `python3 -m unittest discover -s tests`: **42 Test çalıştırıldı — %100 Başarı (0 Hata).**
