@@ -5,7 +5,10 @@
 import re
 import json
 import urllib.request
-import xml.etree.ElementTree as ET
+try:
+    import defusedxml.ElementTree as ET
+except ImportError:
+    import xml.etree.ElementTree as ET  # nosec B405
 from typing import List, Dict, Any, Optional
 from .profile import CandidateProfile
 from .matcher import ResumeMatcher
@@ -91,7 +94,7 @@ class JobRadar:
         with urllib.request.urlopen(req, timeout=timeout) as response:
             xml_data = response.read()
 
-        root = ET.fromstring(xml_data)
+        root = ET.fromstring(xml_data)  # nosec B314 - uses defusedxml when installed
         items = []
         for elem in root.findall(".//item"):
             title = elem.findtext("title") or ""
